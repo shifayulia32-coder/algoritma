@@ -1,67 +1,51 @@
 ```
-@echo off
-title Recovery Data - Modified
-setlocal enabledelayedexpansion
+#include <iostream>
+#include <string>
+using namespace std;
 
-:: === Folder sumber dan backup ===
-set SOURCE=C:\simulasiDrive
-set BACKUP=backup_result
-set ZIPFILE=backup_result.zip
+int main() {
+    const int jumlah = 6;
 
-:: === Membuat folder backup jika belum ada ===
-if not exist "%BACKUP%" mkdir "%BACKUP%"
+    int kode[jumlah] = {101, 102, 103, 104, 105, 106};
+    string nama[jumlah] = {
+        "Es Teller",
+        "Es Jelly Raja",
+        "Es Campur",
+        "Es Jeruk Segar",
+        "Es Cincau Hijau",
+        "Es Mangga Lumer"
+    };
+    string status[jumlah] = {
+        "Dalam Proses",
+        "Dikirim",
+        "Selesai",
+        "Dibatalkan",
+        "Dalam Proses",
+        "Dikirim"
+    };
 
-echo =======================================
-echo       RECOVERY & BACKUP SYSTEM
-echo =======================================
-echo.
+    string cari;
+    cout << "=== SISTEM PENCARIAN DATA RAJA ES ===\n";
+    cout << "Masukkan nama minuman yang ingin dicari: ";
+    getline(cin, cari);
 
-:: === Hitung total file .pdf dan .docx ===
-set count=0
-for %%f in ("%SOURCE%\*.pdf" "%SOURCE%\*.docx") do (
-    if exist "%%f" (
-        set /a count+=1
-    )
-)
+    bool ketemu = false;
 
-echo Total file yang akan dibackup: %count%
-echo.
+    for (int i = 0; i < jumlah; i++) {
+        if (nama[i] == cari) {
+            cout << "\nData ditemukan!\n";
+            cout << "Kode   : " << kode[i] << endl;
+            cout << "Nama   : " << nama[i] << endl;
+            cout << "Status : " << status[i] << endl;
+            ketemu = true;
+            break;
+        }
+    }
 
-:: === Proses backup + progress counter ===
-set processed=0
-for %%f in ("%SOURCE%\*.pdf" "%SOURCE%\*.docx") do (
-    if exist "%%f" (
-        copy "%%f" "%BACKUP%" >nul
-        set /a processed+=1
-        echo [!processed!/%count%] Memproses: %%~nxf
-    )
-)
+    if (!ketemu) {
+        cout << "\nData tidak ditemukan!" << endl;
+    }
 
-echo.
-echo Backup selesai!
-echo.
-
-:: === Verifikasi checksum ===
-echo Membuat file checksum...
-echo ============================ > checksum.txt
-
-for %%f in ("%BACKUP%\*.pdf" "%BACKUP%\*.docx") do (
-    echo File: %%~nxf >> checksum.txt
-    certutil -hashfile "%%f" SHA256 >> checksum.txt
-    echo. >> checksum.txt
-)
-
-echo Checksum selesai dibuat: checksum.txt
-echo.
-
-:: === Compress ke ZIP ===
-echo Mengcompress folder backup...
-powershell -command "Compress-Archive -Path '%BACKUP%\*' -DestinationPath '%ZIPFILE%' -Force"
-
-echo Compress selesai: %ZIPFILE%
-echo.
-
-echo ==== PROSES SELESAI ====
-pause
-
+    return 0;
+}
 ```

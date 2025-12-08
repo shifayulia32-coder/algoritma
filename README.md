@@ -1,4 +1,4 @@
-```
+
 ```
 #include <iostream>
 #include <string>
@@ -31,7 +31,7 @@ int main() {
         cout << "Pilih menu: ";
         cin >> pilihan;
 
-        cin.ignore(); // membersihkan buffer
+        cin.ignore();
 
         if (pilihan == 1) {
             string cariNama;
@@ -43,19 +43,20 @@ int main() {
             for (int i = 0; i < jumlah; i++) {
                 if (nama[i] == cariNama) {
                     cout << "\nDATA DITEMUKAN!\n";
-                    cout << "Kode : " << kode[i] << endl;
-                    cout << "Nama : " << nama[i] << endl;
+                    cout << "Kode   : " << kode[i] << endl;
+                    cout << "Nama   : " << nama[i] << endl;
+                    cout << "Indeks : " << i << endl;   // <-- TAMPILKAN INDEKS
                     ketemu = true;
                     break;
                 }
             }
 
             if (!ketemu) {
-                cout << "\nData tidak ditemukan!" << endl;
+                cout << "\nData tidak ditemukan!\n";
             }
 
-        } 
-        else if (pilihan == 2) {
+        } else if (pilihan == 2) {
+
             int cariKode;
             cout << "\nMasukkan kode minuman: ";
             cin >> cariKode;
@@ -65,31 +66,29 @@ int main() {
             for (int i = 0; i < jumlah; i++) {
                 if (kode[i] == cariKode) {
                     cout << "\nDATA DITEMUKAN!\n";
-                    cout << "Kode : " << kode[i] << endl;
-                    cout << "Nama : " << nama[i] << endl;
+                    cout << "Kode   : " << kode[i] << endl;
+                    cout << "Nama   : " << nama[i] << endl;
+                    cout << "Indeks : " << i << endl;  // <-- TAMPILKAN INDEKS
                     ketemu = true;
                     break;
                 }
             }
 
             if (!ketemu) {
-                cout << "\nData tidak ditemukan!" << endl;
+                cout << "\nData tidak ditemukan!\n";
             }
 
-        } 
-        else if (pilihan == 3) {
+        } else if (pilihan == 3) {
             cout << "\n=== DAFTAR SEMUA MINUMAN ===\n";
             for (int i = 0; i < jumlah; i++) {
-                cout << kode[i] << " - " << nama[i] << endl;
+                cout << "[" << i << "] " << kode[i] << " - " << nama[i] << endl;
             }
 
-        } 
-        else if (pilihan == 4) {
+        } else if (pilihan == 4) {
             cout << "\nKeluar dari program...\n";
             break;
-        } 
-        else {
-            cout << "\nPilihan tidak valid!" << endl;
+        } else {
+            cout << "\nPilihan tidak valid!\n";
         }
 
         cout << "\nIngin kembali ke menu? (y/n): ";
@@ -102,6 +101,5 @@ int main() {
     return 0;
 }
 
-```
 
 ```

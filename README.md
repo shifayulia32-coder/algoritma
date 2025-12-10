@@ -6,16 +6,37 @@ using namespace std;
 
 int main() {
 
-    const int jumlah = 6;
+    const int jumlah = 15;
 
-    int kode[jumlah] = {101, 102, 103, 104, 105, 106};
+    int kode[jumlah] = {
+        1001, 1002, 1003, 1004, 1005,
+        1006, 1007, 1008, 1009, 1010,
+        1011, 1012, 1013, 1014, 1015
+    };
+
     string nama[jumlah] = {
-        "Es Teller",
-        "Es Jelly Raja",
-        "Es Campur",
-        "Es Jeruk Segar",
-        "Es Cincau Hijau",
-        "Es Mangga Lumer"
+        "Es teller",
+        "Es jelly",
+        "Es campur",
+        "Es jeruk",
+        "Es cincau",
+        "Es kepal milo",
+        "Es strawberry",
+        "Es buah",
+        "Es buah es krim",
+        "Es doger",
+        "Es oyen",
+        "Es avocado",
+        "Es durian",
+        "Es rainbow",
+        "Es coklat"
+    };
+
+    // Daftar harga sesuai urutan
+    int harga[jumlah] = {
+        12000, 10000, 15000, 8000, 9000,
+        13000, 11000, 14000, 17000, 12000,
+        15000, 16000, 20000, 13000, 10000
     };
 
     int pilihan;
@@ -33,6 +54,7 @@ int main() {
 
         cin.ignore();
 
+        // ======================= CARI NAMA =======================
         if (pilihan == 1) {
             string cariNama;
             cout << "\nMasukkan nama minuman: ";
@@ -45,7 +67,7 @@ int main() {
                     cout << "\nDATA DITEMUKAN!\n";
                     cout << "Kode   : " << kode[i] << endl;
                     cout << "Nama   : " << nama[i] << endl;
-                    cout << "Indeks : " << i << endl;   // <-- TAMPILKAN INDEKS
+                    cout << "Harga  : Rp " << harga[i] << endl;
                     ketemu = true;
                     break;
                 }
@@ -55,6 +77,7 @@ int main() {
                 cout << "\nData tidak ditemukan!\n";
             }
 
+        // ====================== CARI KODE =========================
         } else if (pilihan == 2) {
 
             int cariKode;
@@ -68,7 +91,7 @@ int main() {
                     cout << "\nDATA DITEMUKAN!\n";
                     cout << "Kode   : " << kode[i] << endl;
                     cout << "Nama   : " << nama[i] << endl;
-                    cout << "Indeks : " << i << endl;  // <-- TAMPILKAN INDEKS
+                    cout << "Harga  : Rp " << harga[i] << endl;
                     ketemu = true;
                     break;
                 }
@@ -78,10 +101,12 @@ int main() {
                 cout << "\nData tidak ditemukan!\n";
             }
 
+        // ====================== TAMPILKAN SEMUA ===================
         } else if (pilihan == 3) {
             cout << "\n=== DAFTAR SEMUA MINUMAN ===\n";
             for (int i = 0; i < jumlah; i++) {
-                cout << "[" << i << "] " << kode[i] << " - " << nama[i] << endl;
+                cout << kode[i] << " - " << nama[i] 
+                     << " - Rp " << harga[i] << endl;
             }
 
         } else if (pilihan == 4) {
@@ -100,6 +125,5 @@ int main() {
 
     return 0;
 }
-
 
 ```
